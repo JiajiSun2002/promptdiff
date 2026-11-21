@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+.env.*
+*.local
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+coverage/
+
+# 本地开发说明（不上传）
+CLAUDE.md

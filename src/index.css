@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+/* 设计令牌：取自原型（mango-radio figma site） */
+@theme {
+  --font-sans: Manrope, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", ui-sans-serif, system-ui,
+    sans-serif;
+
+  --color-brand: #245ef5;
+  --color-brand-hover: #174fe3;
+  --color-brand-soft: #edf3ff;
+  --color-brand-softer: #f5f8ff;
+  --color-brand-line: #d8e4ff;
+  --color-brand-ring: #eaf0ff;
+
+  --color-ink: #14213d;
+  --color-ink-2: #263651;
+  --color-ink-3: #40506b;
+  --color-muted: #748198;
+  --color-faint: #9aa4b4;
+
+  --color-line: #e2e7ef;
+  --color-line-soft: #edf0f5;
+  --color-field: #fbfcfe;
+  --color-field-line: #dce2eb;
+  --color-canvas: #f7f9fc;
+  --color-chip: #f4f6fa;
+
+  --color-ok: #27805a;
+  --color-ok-soft: #eaf8f1;
+  --color-bad: #b83b48;
+  --color-bad-soft: #fff0f1;
+  --color-warn: #a65f00;
+  --color-warn-soft: #fff6e5;
+  --color-rel: #7652b2;
+  --color-rel-soft: #f4effc;
+
+  --shadow-card: 0 6px 22px #202e4e0b;
+  --shadow-card-lg: 0 12px 38px #202e4e0f;
+  --shadow-pop: 0 10px 28px #12213f33;
+  --shadow-brand: 0 7px 18px #245ef53d;
+}
+
+@layer base {
+  html {
+    background: var(--color-canvas);
+  }
+  body {
+    min-height: 100vh;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    background:
+      radial-gradient(circle at 50% -20%, #245ef50f, transparent 33%),
+      var(--color-canvas);
+    -webkit-font-smoothing: antialiased;
+    font-synthesis: none;
+  }
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@utility card {
+  @apply rounded-[13px] border border-line bg-white shadow-card;
+}
+@utility eyebrow {
+  @apply mb-1 block text-[11px] font-bold tracking-[1.5px] text-brand uppercase;
+}
+@utility field {
+  @apply w-full rounded-[9px] border border-field-line bg-field text-ink-2 outline-none transition;
+  &:focus {
+    @apply border-[#7b9df8] bg-white ring-3 ring-brand-ring;
+  }
+}
+@utility field-label {
+  @apply mb-2 block text-xs font-bold text-ink-3;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-[9px] text-sm font-bold transition disabled:cursor-not-allowed;
+}
+@utility btn-primary {
+  @apply btn h-11 bg-brand px-5 text-white shadow-brand hover:-translate-y-px hover:bg-brand-hover disabled:translate-y-0 disabled:bg-line-soft disabled:text-faint disabled:shadow-none;
+}
+@utility btn-soft {
+  @apply btn h-9 border border-brand-line bg-brand-soft px-3.5 text-brand hover:-translate-y-px hover:bg-[#e1eaff] disabled:translate-y-0 disabled:opacity-50;
+}
+@utility btn-ghost {
+  @apply btn h-9 px-3 text-[#53617a] hover:bg-[#f2f5fb] hover:text-brand disabled:opacity-40;
+}
+@utility link-back {
+  @apply inline-flex items-center gap-1.5 text-xs font-semibold text-[#65738a] hover:text-brand;
+}
+@utility spinner {
+  @apply inline-block h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/40 border-t-white;
+}

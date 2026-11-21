@@ -1,0 +1,624 @@
+{
+  "id": "demo-cat-dog",
+  "title": "MOCK 示例：橘猫与蓝狗（照片）",
+  "srcLang": "zh",
+  "srcPrompt": "一只橘色的猫坐在一只蓝色的狗左边，在树下。",
+  "enPrompt": "An orange cat sits to the left of a blue dog under a tree.",
+  "graph": {
+    "entities": [
+      {
+        "id": "e_cat",
+        "label": {
+          "src": "猫",
+          "en": "cat"
+        },
+        "spans": {
+          "src": [
+            [
+              5,
+              6
+            ]
+          ],
+          "en": [
+            [
+              10,
+              13
+            ]
+          ]
+        }
+      },
+      {
+        "id": "e_dog",
+        "label": {
+          "src": "狗",
+          "en": "dog"
+        },
+        "spans": {
+          "src": [
+            [
+              13,
+              14
+            ]
+          ],
+          "en": [
+            [
+              41,
+              44
+            ]
+          ]
+        }
+      },
+      {
+        "id": "e_tree",
+        "label": {
+          "src": "树",
+          "en": "tree"
+        },
+        "spans": {
+          "src": [
+            [
+              18,
+              19
+            ]
+          ],
+          "en": [
+            [
+              53,
+              57
+            ]
+          ]
+        }
+      }
+    ],
+    "attributes": [
+      {
+        "id": "a_cat_orange",
+        "entityId": "e_cat",
+        "value": {
+          "src": "橘色的",
+          "en": "orange"
+        },
+        "spans": {
+          "src": [
+            [
+              2,
+              5
+            ]
+          ],
+          "en": [
+            [
+              3,
+              9
+            ]
+          ]
+        }
+      },
+      {
+        "id": "a_cat_sit",
+        "entityId": "e_cat",
+        "value": {
+          "src": "坐",
+          "en": "sitting"
+        },
+        "spans": {
+          "src": [
+            [
+              6,
+              7
+            ]
+          ],
+          "en": [
+            [
+              14,
+              18
+            ]
+          ]
+        }
+      },
+      {
+        "id": "a_dog_blue",
+        "entityId": "e_dog",
+        "value": {
+          "src": "蓝色的",
+          "en": "blue"
+        },
+        "spans": {
+          "src": [
+            [
+              10,
+              13
+            ]
+          ],
+          "en": [
+            [
+              36,
+              40
+            ]
+          ]
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_cat_left_dog",
+        "subjectId": "e_cat",
+        "objectId": "e_dog",
+        "predicate": {
+          "src": "在…左边",
+          "en": "to the left of"
+        },
+        "spans": {
+          "src": [
+            [
+              14,
+              16
+            ]
+          ],
+          "en": [
+            [
+              19,
+              33
+            ]
+          ]
+        }
+      },
+      {
+        "id": "r_cat_under_tree",
+        "subjectId": "e_cat",
+        "objectId": "e_tree",
+        "predicate": {
+          "src": "在…下",
+          "en": "under"
+        },
+        "spans": {
+          "src": [
+            [
+              17,
+              18
+            ],
+            [
+              19,
+              20
+            ]
+          ],
+          "en": [
+            [
+              45,
+              50
+            ]
+          ]
+        }
+      },
+      {
+        "id": "r_dog_under_tree",
+        "subjectId": "e_dog",
+        "objectId": "e_tree",
+        "predicate": {
+          "src": "在…下",
+          "en": "under"
+        },
+        "spans": {
+          "src": [
+            [
+              17,
+              18
+            ],
+            [
+              19,
+              20
+            ]
+          ],
+          "en": [
+            [
+              45,
+              50
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "q1",
+      "kind": "entity",
+      "refId": "e_cat",
+      "question": "Is there a cat?"
+    },
+    {
+      "id": "q2",
+      "kind": "entity",
+      "refId": "e_dog",
+      "question": "Is there a dog?"
+    },
+    {
+      "id": "q3",
+      "kind": "entity",
+      "refId": "e_tree",
+      "question": "Is there a tree?"
+    },
+    {
+      "id": "q4",
+      "kind": "attribute",
+      "refId": "a_cat_orange",
+      "dependsOn": [
+        "q1"
+      ],
+      "question": "Is the cat orange?"
+    },
+    {
+      "id": "q5",
+      "kind": "attribute",
+      "refId": "a_cat_sit",
+      "dependsOn": [
+        "q1"
+      ],
+      "question": "Is the cat sitting?"
+    },
+    {
+      "id": "q6",
+      "kind": "attribute",
+      "refId": "a_dog_blue",
+      "dependsOn": [
+        "q2"
+      ],
+      "question": "Is the dog blue?"
+    },
+    {
+      "id": "q7",
+      "kind": "relation",
+      "refId": "r_cat_left_dog",
+      "dependsOn": [
+        "q1",
+        "q2"
+      ],
+      "question": "Is the cat to the left of the dog?"
+    },
+    {
+      "id": "q8",
+      "kind": "relation",
+      "refId": "r_cat_under_tree",
+      "dependsOn": [
+        "q1",
+        "q3"
+      ],
+      "question": "Is the cat under the tree?"
+    },
+    {
+      "id": "q9",
+      "kind": "relation",
+      "refId": "r_dog_under_tree",
+      "dependsOn": [
+        "q2",
+        "q3"
+      ],
+      "question": "Is the dog under the tree?"
+    }
+  ],
+  "iterations": [
+    {
+      "id": "it_0",
+      "images": [
+        {
+          "id": "img_src_0",
+          "lang": "src",
+          "sampleIndex": 0,
+          "promptUsed": "一只橘色的猫坐在一只蓝色的狗左边，在树下。",
+          "model": "mock",
+          "params": {
+            "aspectRatio": "3:2"
+          },
+          "promptTemplateVersion": "mock",
+          "url": "fixtures/cat-dog/src-0.png",
+          "createdAt": "2026-11-21T22:00:00Z"
+        },
+        {
+          "id": "img_en_0",
+          "lang": "en",
+          "sampleIndex": 0,
+          "promptUsed": "An orange cat sits to the left of a blue dog under a tree.",
+          "model": "mock",
+          "params": {
+            "aspectRatio": "3:2"
+          },
+          "promptTemplateVersion": "mock",
+          "url": "fixtures/cat-dog/en-0.png",
+          "createdAt": "2026-11-21T22:00:00Z"
+        }
+      ],
+      "checks": [
+        {
+          "imageId": "img_src_0",
+          "requirementId": "q1",
+          "verdict": "yes",
+          "reason": "画面左侧有一只橘色虎斑猫。",
+          "boxes": {
+            "e_cat": [
+              0.194,
+              0.415,
+              0.384,
+              0.864
+            ]
+          }
+        },
+        {
+          "imageId": "img_src_0",
+          "requirementId": "q2",
+          "verdict": "yes",
+          "reason": "画面右侧有一只蓝色的狗。",
+          "boxes": {
+            "e_dog": [
+              0.574,
+              0.232,
+              0.83,
+              0.874
+            ]
+          }
+        },
+        {
+          "imageId": "img_src_0",
+          "requirementId": "q3",
+          "verdict": "yes",
+          "reason": "画面中央有一棵大树，树冠覆盖整个上方。",
+          "boxes": {
+            "e_tree": [
+              0,
+              0,
+              1,
+              0.655
+            ]
+          }
+        },
+        {
+          "imageId": "img_src_0",
+          "requirementId": "q4",
+          "verdict": "yes",
+          "reason": "猫是橘色虎斑猫。",
+          "boxes": {
+            "e_cat": [
+              0.194,
+              0.415,
+              0.384,
+              0.864
+            ]
+          }
+        },
+        {
+          "imageId": "img_src_0",
+          "requirementId": "q5",
+          "verdict": "yes",
+          "reason": "猫端坐在草地上。",
+          "boxes": {
+            "e_cat": [
+              0.194,
+              0.415,
+              0.384,
+              0.864
+            ]
+          }
+        },
+        {
+          "imageId": "img_src_0",
+          "requirementId": "q6",
+          "verdict": "yes",
+          "reason": "狗通体是鲜艳的蓝色。",
+          "boxes": {
+            "e_dog": [
+              0.574,
+              0.232,
+              0.83,
+              0.874
+            ]
+          }
+        },
+        {
+          "imageId": "img_src_0",
+          "requirementId": "q7",
+          "verdict": "yes",
+          "reason": "猫在画面左侧，狗在右侧。",
+          "boxes": {
+            "e_cat": [
+              0.194,
+              0.415,
+              0.384,
+              0.864
+            ],
+            "e_dog": [
+              0.574,
+              0.232,
+              0.83,
+              0.874
+            ]
+          }
+        },
+        {
+          "imageId": "img_src_0",
+          "requirementId": "q8",
+          "verdict": "yes",
+          "reason": "猫坐在树冠的阴影下。",
+          "boxes": {
+            "e_cat": [
+              0.194,
+              0.415,
+              0.384,
+              0.864
+            ],
+            "e_tree": [
+              0,
+              0,
+              1,
+              0.655
+            ]
+          }
+        },
+        {
+          "imageId": "img_src_0",
+          "requirementId": "q9",
+          "verdict": "yes",
+          "reason": "狗坐在树冠下方的树荫里。",
+          "boxes": {
+            "e_dog": [
+              0.574,
+              0.232,
+              0.83,
+              0.874
+            ],
+            "e_tree": [
+              0,
+              0,
+              1,
+              0.655
+            ]
+          }
+        },
+        {
+          "imageId": "img_en_0",
+          "requirementId": "q1",
+          "verdict": "yes",
+          "reason": "画面左侧有一只橘色虎斑猫。",
+          "boxes": {
+            "e_cat": [
+              0.075,
+              0.395,
+              0.29,
+              0.789
+            ]
+          }
+        },
+        {
+          "imageId": "img_en_0",
+          "requirementId": "q2",
+          "verdict": "yes",
+          "reason": "画面右侧有一只蓝色的狗。",
+          "boxes": {
+            "e_dog": [
+              0.465,
+              0.371,
+              0.986,
+              0.815
+            ]
+          }
+        },
+        {
+          "imageId": "img_en_0",
+          "requirementId": "q3",
+          "verdict": "yes",
+          "reason": "画面中央有一棵大树，树冠覆盖整个上方。",
+          "boxes": {
+            "e_tree": [
+              0,
+              0,
+              1,
+              0.575
+            ]
+          }
+        },
+        {
+          "imageId": "img_en_0",
+          "requirementId": "q4",
+          "verdict": "yes",
+          "reason": "猫是橘色虎斑猫。",
+          "boxes": {
+            "e_cat": [
+              0.075,
+              0.395,
+              0.29,
+              0.789
+            ]
+          }
+        },
+        {
+          "imageId": "img_en_0",
+          "requirementId": "q5",
+          "verdict": "yes",
+          "reason": "猫端坐在草地上。",
+          "boxes": {
+            "e_cat": [
+              0.075,
+              0.395,
+              0.29,
+              0.789
+            ]
+          }
+        },
+        {
+          "imageId": "img_en_0",
+          "requirementId": "q6",
+          "verdict": "yes",
+          "reason": "狗通体是鲜艳的蓝色。",
+          "boxes": {
+            "e_dog": [
+              0.465,
+              0.371,
+              0.986,
+              0.815
+            ]
+          }
+        },
+        {
+          "imageId": "img_en_0",
+          "requirementId": "q7",
+          "verdict": "yes",
+          "reason": "猫在画面左侧，狗在右侧。",
+          "boxes": {
+            "e_cat": [
+              0.075,
+              0.395,
+              0.29,
+              0.789
+            ],
+            "e_dog": [
+              0.465,
+              0.371,
+              0.986,
+              0.815
+            ]
+          }
+        },
+        {
+          "imageId": "img_en_0",
+          "requirementId": "q8",
+          "verdict": "yes",
+          "reason": "猫坐在树冠的阴影下。",
+          "boxes": {
+            "e_cat": [
+              0.075,
+              0.395,
+              0.29,
+              0.789
+            ],
+            "e_tree": [
+              0,
+              0,
+              1,
+              0.575
+            ]
+          }
+        },
+        {
+          "imageId": "img_en_0",
+          "requirementId": "q9",
+          "verdict": "yes",
+          "reason": "狗趴在树冠下方的树荫里。",
+          "boxes": {
+            "e_dog": [
+              0.465,
+              0.371,
+              0.986,
+              0.815
+            ],
+            "e_tree": [
+              0,
+              0,
+              1,
+              0.575
+            ]
+          }
+        }
+      ],
+      "annotations": [],
+      "createdAt": "2026-11-21T22:00:00Z"
+    }
+  ],
+  "createdAt": "2026-11-21T22:00:00Z"
+}
